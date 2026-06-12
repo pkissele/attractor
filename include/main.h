@@ -7,9 +7,14 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <Eigen/Dense>
 
 #include "atomic"
 #include "mutex"
+
+using Mat4f = Eigen::Matrix4f;
+using Vec3f = Eigen::Vector3f;
+
 
 struct Buffer {
     int N, curInd;
@@ -30,9 +35,12 @@ struct globalState {
     bool& save_single_frame;
     double& displayW;
     double& displayH;
-    double& displayX;
-    double& displayY;
+    Vec3f* eye;
+    Vec3f* target;
+    Vec3f* center;
+    float& viewDist;
     GLFWwindow* window;
+
 
     // GUI-sim thread sharing
     std::atomic<int> simStep{0};
@@ -44,12 +52,10 @@ struct globalState {
     std::mutex swapMutex;
 };
 
-void simulate(Attractor& sim, globalState& shared, std::atomic<bool>& running, double dt, bool LOG_ENERGY, bool LOG_SIM_TIME);
+void simulate(Attractor& sim, globalState& shared, std::atomic<bool>& running, double dt, bool LOG_SIM_TIME);
 
 void updateBuffer(globalState& shared, int ind, Points& points);
 
 void keyCallback(GLFWwindow* w, int key, int sc, int action, int mods);
 
-GLuint compile_shader(GLenum type, const char* src);
-
-GLuint create_program(const std::string& vs_path, const std::string& fs_path);
+void handleMoveKeys(GLFWwindow* w, globalState& s, float elapsed);

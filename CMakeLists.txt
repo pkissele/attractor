@@ -33,6 +33,7 @@ add_executable(runSim
     src/main.cpp
     src/attractor.cpp
     src/gl_utils.cpp
+    src/view.cpp
 )
 
 # Linking

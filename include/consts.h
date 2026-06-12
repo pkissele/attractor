@@ -6,6 +6,8 @@ namespace Consts {
     //
     template<typename T> inline constexpr T sq(T x) { return x * x; }
 
+
+
     //
     // Physical/mathematical constants
     //
@@ -14,11 +16,13 @@ namespace Consts {
     constexpr float RHO = 28;
     constexpr float BETA = 8.0f/3.0f;
 
+
+
     //
     // Simulation constants
     //
-
     constexpr int N = 100000;
+
 
 
     //
@@ -45,9 +49,15 @@ namespace Consts {
     constexpr int LOG_GUI_TIME_INTERVAL = 30;
     constexpr bool LOG_SIM_TIME = false;
     constexpr int LOG_SIM_TIME_INTERVAL = 5;
-    constexpr bool LOG_ENERGY = false; 
-    constexpr int LOG_ENERGY_INTERVAL = 1;
 
-    constexpr int MASS_DISPLAY_THRESHOLD = 5;
-    constexpr float VISIBILITY = 0.1;
+
+
+    //
+    // 3D parameters
+    //
+    constexpr float FOV = 90;
+    constexpr float ASPECT_RATIO = (float)screenH / (float)screenW;
+    constexpr float NEAR_PLANE = 0.1;
+    constexpr float FAR_PLANE = 100000000;
+
 }

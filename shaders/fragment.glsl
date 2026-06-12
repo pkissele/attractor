@@ -10,7 +10,7 @@ void main() {
     if (dot(coord, coord) > 1.0) discard;
 
 
-    float scale = (1.0 - ageV);
-    vec3 color = vec3(scale, 0, scale);
-    fragColor = vec4(color, 1);
+    float scale = pow((1.0 - ageV), 2);
+    vec3 color = vec3(1, 0, 1);
+    fragColor = vec4(color, scale);
 }
