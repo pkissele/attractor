@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -8,9 +9,16 @@ struct VAOResult {
     GLuint vao, vbo;
 };
 
+struct VertexAttrib {
+    int location;
+    int size;
+    int stride;
+    int offset;
+};
+
 GLFWwindow* initWindow(int width, int height, const char* title);
 
-VAOResult createStaticVAO(const float* data, size_t size);
+VAOResult createStaticVAO(const float* data, size_t size, const std::vector<VertexAttrib>& attribs);
 
 GLuint attachVBO(int attribIndex, int components, int count);
 

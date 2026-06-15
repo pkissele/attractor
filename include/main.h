@@ -43,8 +43,8 @@ struct globalState {
 
 
     // GUI-sim thread sharing
-    std::atomic<int> simStep{0};
     Buffer buffers[2];
+    std::atomic<int> step{0};
     std::atomic<int> readInd{0};
     std::atomic<bool> newFrame {false};
     std::atomic<bool> paused {false};
@@ -52,7 +52,7 @@ struct globalState {
     std::mutex swapMutex;
 };
 
-void simulate(Attractor& sim, globalState& shared, std::atomic<bool>& running, double dt, bool LOG_SIM_TIME);
+void step(Attractor& sim, globalState& shared, std::atomic<bool>& running, double dt, bool LOG_SIM_TIME);
 
 void updateBuffer(globalState& shared, int ind, Points& points);
 
